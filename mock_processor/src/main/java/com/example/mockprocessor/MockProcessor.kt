@@ -1,12 +1,15 @@
-package com.example.mock_processor
+package com.example.mockprocessor
 
 import com.google.auto.service.AutoService
-import com.google.common.collect.ImmutableSet
 import com.google.gson.annotations.SerializedName
 import com.squareup.kotlinpoet.*
 import wottrich.com.mock_annotations.MockField
 import wottrich.com.mock_annotations.MockModel
+import java.io.File
 import java.io.Serializable
+import java.io.Writer
+import java.lang.Appendable
+import java.lang.Exception
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.ElementKind
@@ -14,11 +17,14 @@ import javax.lang.model.element.TypeElement
 import javax.lang.model.type.MirroredTypeException
 import javax.lang.model.type.TypeMirror
 import javax.lang.model.util.Elements
-
+import javax.tools.Diagnostic
+import javax.annotation.processing.ProcessingEnvironment
+import javax.tools.StandardLocation
 
 @AutoService(Processor::class) // For registering the service
-@SupportedSourceVersion(SourceVersion.RELEASE_8) // to support Java 8
-class MockProcessor : AbstractProcessor() {
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedOptions("kapt.kotlin.generated")
+open class MockProcessor : AbstractProcessor() {
 
     private val SUFFIX = "Mock"
 
@@ -26,6 +32,7 @@ class MockProcessor : AbstractProcessor() {
     private lateinit var filer: Filer
     private lateinit var messager: Messager
 
+    @Synchronized
     override fun init(processingEnvironment: ProcessingEnvironment?) {
         super.init(processingEnvironment)
         if (processingEnvironment != null) {
@@ -35,6 +42,8 @@ class MockProcessor : AbstractProcessor() {
         }
     }
 
+
+
     override fun process(set: MutableSet<out TypeElement>?, roundEnvironment: RoundEnvironment?): Boolean {
         if (roundEnvironment == null)
             return false
@@ -42,20 +51,18 @@ class MockProcessor : AbstractProcessor() {
         for (element in roundEnvironment.getElementsAnnotatedWith(MockModel::class.java)) {
             val mockWith = element.getAnnotation(MockModel::class.java) as MockModel
             val packageName = elementsUtils.getPackageOf(element).qualifiedName.toString()
+            messager.printMessage(Diagnostic.Kind.WARNING, packageName)
             val mockClassName = SUFFIX + element.simpleName
 
             val mockType = TypeSpec.classBuilder(mockClassName)
-                .addModifiers(KModifier.PUBLIC)
 
             if (mockWith.serializable)
                 mockType.addSuperinterface(Serializable::class)
 
             if (element.kind == ElementKind.CLASS) {
-                print("Element.kind")
                 for (innerElement in element.enclosedElements) {
                     if (innerElement.kind == ElementKind.FIELD
-                        && innerElement.getAnnotation(MockField::class.java) != null
-                    ) {
+                        && innerElement.getAnnotation(MockField::class.java) != null) {
 
                         val fieldWith = innerElement.getAnnotation(MockField::class.java) as MockField
 
@@ -64,33 +71,43 @@ class MockProcessor : AbstractProcessor() {
                         try {
                             fieldWith.type
                         } catch (mte: MirroredTypeException) {
-                            print("exception")
+                            messager.printMessage(Diagnostic.Kind.WARNING, "exception")
                             fieldParent = mte.typeMirror
                         }
 
                         val nameField = fieldWith.attribute
 
+                        messager.printMessage(Diagnostic.Kind.WARNING, "make type")
                         val typeMirror = fieldParent?.asTypeName() ?: return false
+                        messager.printMessage(Diagnostic.Kind.WARNING, "success type - $typeMirror")
 
-                        val fieldSpec: PropertySpec.Builder = PropertySpec.builder(
-                            nameField, typeMirror
-                        ).addModifiers(KModifier.INTERNAL)
+                        var fieldSpec: PropertySpec.Builder
 
-                        print(typeMirror.toString())
+                        val spec = InternalProperty()
+                        spec.nameField = nameField
+                        spec.modifiers = KModifier.INTERNAL
 
                         when (typeMirror) {
                             INT -> {
                                 val valueInt = fieldWith.value.toInt()
-                                fieldSpec.initializer("", valueInt)
+                                spec.typeClass = Int::class
+                                spec.format = "%L"
+                                spec.args = valueInt
                             }
                             DOUBLE -> {
                                 val valueDouble = fieldWith.value.toDouble()
-                                fieldSpec.initializer("", valueDouble)
+                                spec.typeClass = Double::class
+                                spec.format = "%L"
+                                spec.args = valueDouble
                             }
                             else -> {
-                                fieldSpec.initializer(fieldWith.value)
+                                spec.typeClass = String::class
+                                spec.format = "%S"
+                                spec.args = fieldWith.value
                             }
                         }
+
+                        fieldSpec = spec.returnProperty()
 
                         if (mockWith.serializedName) {
                             val annotationSpec = AnnotationSpec.builder(SerializedName::class)
@@ -101,33 +118,24 @@ class MockProcessor : AbstractProcessor() {
                         mockType.addProperty(fieldSpec.build())
                     }
                 }
-            }
+                val mockTypeBuilder = mockType.build()
 
-            val kotlinFile = FileSpec.get(packageName, mockType.build())
+                val kotlinFile = FileSpec.builder(packageName, mockClassName).addType(mockTypeBuilder).build()
 
-
-            val filerSourceFile = kotlinFile.toJavaFileObject()
-            try {
-                filerSourceFile.openWriter().use { kotlinFile.writeTo(it) }
-            } catch (e: Exception) {
-                try {
-                    filerSourceFile.delete()
-                } catch (ignored: Exception) {
-                }
-                throw e
+                val kotlinFileObject = filer.createResource(StandardLocation.SOURCE_OUTPUT, packageName, "$mockClassName.kt")
+                kotlinFileObject.openWriter().use { kotlinFile.writeTo(it) }
             }
         }
 
+        return true
+    }
 
-    return true
-}
+    override fun getSupportedAnnotationTypes(): Set<String> {
+        return mutableSetOf(MockField::class.java.canonicalName, MockModel::class.java.canonicalName)
+    }
 
-override fun getSupportedAnnotationTypes(): MutableSet<String> {
-    return ImmutableSet.of(MockField::class.java.canonicalName, MockModel::class.java.canonicalName)
-}
-
-override fun getSupportedSourceVersion(): SourceVersion {
-    return SourceVersion.latestSupported()
-}
+    override fun getSupportedSourceVersion(): SourceVersion {
+        return SourceVersion.latest()
+    }
 
 }

@@ -1,6 +1,5 @@
 package wottrich.com.mock_annotations
 
-import java.lang.annotation.RetentionPolicy
 import kotlin.reflect.KClass
 
 /**
@@ -8,6 +7,7 @@ import kotlin.reflect.KClass
  * @since 30/01/2019
  */
 
-@Target(AnnotationTarget.FIELD, AnnotationTarget.FILE)
-@Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
+@Target(AnnotationTarget.FIELD)
+@MustBeDocumented
 annotation class MockField(val type: KClass<*> , val value: String = "null", val attribute: String)
