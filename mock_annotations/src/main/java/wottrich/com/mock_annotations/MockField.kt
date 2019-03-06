@@ -10,4 +10,8 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.SOURCE)
 @Target(AnnotationTarget.FIELD)
 @MustBeDocumented
-annotation class MockField(val type: KClass<*> , val value: String = "null", val attribute: String)
+annotation class MockField(
+    val type: KClass<*>,
+    val value: String = "null",
+    val attribute: String
+)
