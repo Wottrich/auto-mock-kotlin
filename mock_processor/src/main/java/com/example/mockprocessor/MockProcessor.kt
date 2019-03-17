@@ -109,8 +109,8 @@ open class MockProcessor : AbstractProcessor() {
                         fieldSpec = spec.returnProperty()
 
                         if (mockWith.serializedName) {
-                            val annotationSpec = AnnotationSpec.builder(SerializedName::class)
-                            annotationSpec.addMember("value", nameField)
+                            val annotationSpec = AnnotationSpec.builder(SerializedName::class.java)
+                            annotationSpec.addMember("value = %S", nameField)
                             fieldSpec.addAnnotation(annotationSpec.build())
                         }
 
