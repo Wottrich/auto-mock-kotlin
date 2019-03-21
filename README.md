@@ -17,7 +17,7 @@ A module project to automate your model for fastly tests before a release versio
 
 **Hey wait, how i do this?**
 
-[How import module in project?]()
+[How import module in project]()
 
 ## How works AutoMock
 ![](https://github.com/Wottrich/auto-mock-kotlin/blob/master/printscreens/Screen%20Shot%202019-03-21%20at%2015.34.02.png)/>
