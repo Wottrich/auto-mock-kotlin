@@ -8,7 +8,7 @@ A module project to automate your model for fastly tests before a release versio
 
 ## Module Application
 **What? Why module? Why not is library?**
-<p>We used AutoService generator and this library use javax processing that doesn't work in android library just in modules.
+<p>We used AutoService generator and this library use javax processing that doesn't work in android library, just in modules.
 
 **So, what I do?**
 <p>You will need to import the modules in project
@@ -17,10 +17,11 @@ A module project to automate your model for fastly tests before a release versio
 
 **Hey wait, how i do this?**
 
-[How import module in project]()
+[How to import module in project]()
 
 ## How works AutoMock
 ![](https://github.com/Wottrich/auto-mock-kotlin/blob/master/printscreens/Screen%20Shot%202019-03-21%20at%2015.34.02.png)
 
+After building application, the processor start working, first it search the annotations and after start the progress to create files and save in application
 
 ## And simple to use
