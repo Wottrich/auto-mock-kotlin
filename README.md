@@ -24,4 +24,11 @@ A module project to automate your model for fastly tests before a release versio
 
 After building application, the processor start working, first it search the annotations and after start the progress to create files and save in application
 
-## And simple to use
+## Simple to use
+@MockModel and @MockField serve to control you generated file. 
+
+![](https://github.com/Wottrich/auto-mock-kotlin/blob/master/printscreens/mainactivity.png)
+
+After building
+
+![](https://github.com/Wottrich/auto-mock-kotlin/blob/master/printscreens/mockmainactivity.png)
