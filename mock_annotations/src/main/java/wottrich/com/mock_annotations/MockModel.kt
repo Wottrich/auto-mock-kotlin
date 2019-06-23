@@ -8,8 +8,10 @@ package wottrich.com.mock_annotations
 @Retention(AnnotationRetention.SOURCE)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.TYPE)
 annotation class MockModel(
+    val customName: String = "",
     val serializable: Boolean = false,
     val serializedName: Boolean = false,
     val list: Boolean = false,
-    val listSize: Int = 5
+    val listSize: Int = 5,
+    val body: String = ""
 )
