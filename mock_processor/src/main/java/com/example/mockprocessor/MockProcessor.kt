@@ -75,8 +75,8 @@ open class MockProcessor : AbstractProcessor() {
 
                     for ((key, value) in map) {
 
-                        val typeClass = ProcessorHelper.typeClass(value)
-                        val initializer = ProcessorHelper.format(value)
+                        val typeClass = ProcessorHelper.typeClass(value = value)
+                        val initializer = ProcessorHelper.format(value = value)
 
                         ProcessorHelper.createField(key, typeClass, value, initializer).apply {
                             mockType.addProperty(this)
