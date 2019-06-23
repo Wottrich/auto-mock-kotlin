@@ -12,11 +12,12 @@ object ProcessorHelper {
     private val arrayList = ClassName("kotlin.collections", "ArrayList")
     private val mutable = ClassName("kotlin.collections", "MutableList")
 
-    internal fun typeClass (value: Any? = null, type: TypeName? = null) : KClass<*> {
+    internal fun typeClass(value: Any? = null, type: TypeName? = null): KClass<*> {
         if (type != null) {
             return when (type) {
                 INT -> Int::class
                 DOUBLE -> Double::class
+                BOOLEAN -> Boolean::class
                 else -> String::class
             }
         }
@@ -24,26 +25,125 @@ object ProcessorHelper {
         return when (value) {
             is Int -> Int::class
             is Double -> Double::class
+            is Boolean -> Boolean::class
             else -> String::class
         }
     }
 
-    internal fun format (value: Any? = null, type: TypeName? = null) : String {
+    internal fun format(value: Any? = null, type: TypeName? = null): String {
         if (type != null) {
             return when (type) {
                 DOUBLE -> "%L"
                 INT -> "%L"
+                BOOLEAN -> "%L"
                 else -> "%S"
             }
         }
         return when (value) {
             is Double -> "%L"
             is Int -> "%L"
+            is Boolean -> "%L"
             else -> "%S"
         }
     }
 
-    internal fun createMutableListField (classType: ClassName, size: Int) : PropertySpec {
+    internal fun createInitializerWithCodeBlock(
+        classType: ClassName,
+        init: Boolean = false,
+        value: Any? = null,
+        initializer: String = "%S"
+    ): CodeBlock {
+        return buildCodeBlock {
+            if (init) {
+                if (value != null) {
+                    this.add("%T", classType)
+                    this.add("($initializer)", value)
+                } else {
+                    this.add("%T()", classType)
+                }
+            } else {
+                this.add("%T", classType)
+            }
+        }
+    }
+
+    internal fun createMultiParameters(values: MutableList<Any>): CodeBlock {
+        return buildCodeBlock {
+            for ((index, value) in values.withIndex()) {
+
+                val type = format(value)
+
+                if (index != values.lastIndex) {
+                    this.add(type, value)
+                    this.add(", ")
+                } else {
+                    this.add(type, value)
+                }
+
+
+            }
+        }
+    }
+
+
+    internal fun createInitializerMultiParametersWithCodeBlock(
+        classType: ClassName,
+        listCodeBlock: MutableList<CodeBlock>,
+        init: Boolean = false
+    ): MutableList<CodeBlock> {
+        val mutCodeBlock: MutableList<CodeBlock> = mutableListOf()
+
+        for (code in listCodeBlock) {
+            buildCodeBlock {
+                if (init) {
+                    this.add("%T", classType)
+                    this.add("(")
+                    this.add(code)
+                    this.add(")")
+
+                } else {
+                    this.add("%T", classType)
+                }
+                mutCodeBlock.add(this.build())
+            }
+        }
+
+        return mutCodeBlock
+    }
+
+    internal fun createMutableListWithCodeBlock(
+        classType: ClassName,
+        listCodeBlock: MutableList<CodeBlock>
+    ): PropertySpec {
+        val mutClassType = mutable.parameterizedBy(classType)
+
+        return PropertySpec.builder("list", mutClassType).let {
+            val codeBlock = buildCodeBlock {
+
+                this.add("mutableListOf(")
+                for ((index, block) in listCodeBlock.withIndex()) {
+                    if (index != listCodeBlock.lastIndex) {
+                        this.add(block)
+                        this.add(", ")
+                    } else {
+                        this.add(block)
+                    }
+                }
+                this.add(")")
+            }
+            it.initializer(codeBlock)
+            it.build()
+        }
+
+    }
+
+    internal fun createMutableListField(
+        classType: ClassName,
+        size: Int,
+        init: Boolean = false,
+        value: Any? = null,
+        initializer: String = "%S"
+    ): PropertySpec {
         val mutClassType = mutable.parameterizedBy(classType)
 
         return PropertySpec.builder("list", mutClassType).let {
@@ -51,10 +151,18 @@ object ProcessorHelper {
             val codeBlock = buildCodeBlock {
                 this.add("mutableListOf(")
                 for (i in 0..size) {
-                    if (i != size)
-                        this.add("%T,", classType)
-                    else
-                        this.add("%T", classType)
+                    if (init) {
+                        if (i != size) {
+                            if (value != null) this.add("%T($initializer),", classType, value)
+                            this.add("%T(),", classType)
+                        } else {
+                            if (value != null) this.add("%T($initializer)", classType, value)
+                            else this.add("%T()", classType)
+                        }
+                    } else {
+                        if (i != size) this.add("%T,", classType)
+                        else this.add("%T", classType)
+                    }
                 }
                 this.add(")")
             }
@@ -64,11 +172,15 @@ object ProcessorHelper {
         }
     }
 
-    internal fun  createField (name: String, type: KClass<*>, value: Any, initializer: String) : PropertySpec {
+    internal fun createField(name: String, type: KClass<*>, value: Any, initializer: String): PropertySpec {
         return PropertySpec.builder(name, type).let {
             it.initializer(initializer, value)
             it.build()
         }
+    }
+
+    internal fun createParameter(name: String, type: KClass<*>): ParameterSpec {
+        return ParameterSpec.builder(name, type).build()
     }
 
     internal fun createFile(packageName: String, className: String, builder: TypeSpec, filer: Filer) {
