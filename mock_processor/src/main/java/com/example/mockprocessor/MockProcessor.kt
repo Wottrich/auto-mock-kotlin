@@ -65,7 +65,7 @@ open class MockProcessor : AbstractProcessor() {
             if (element.kind == ElementKind.CLASS) {
                 if (mockWith.body.isNotEmpty()) {
 
-                    if (mockWith.body.substring(0) == "[") {
+                    if (mockWith.body.substring(0, 1) != "[") {
 
                         //<editor-folder defaultstate="Collapsed" desc="Body Json">
                         val map = Gson().fromJson(mockWith.body, Map::class.java) as Map<String, Any>
@@ -96,29 +96,16 @@ open class MockProcessor : AbstractProcessor() {
                         val classListType = ClassName(packageName, name)
                         val listClass = TypeSpec.classBuilder(name)
                         var lastKey = ""
-                        val listCodeBlock: MutableList<CodeBlock> = mutableListOf()
-
-                        var moreOneParamenter = false
-
                         val constructor = FunSpec.constructorBuilder()
 
+                        val listCodeBlock: MutableList<CodeBlock> = mutableListOf()
+
                         for ((index, mapper) in map.withIndex()) {
-                            moreOneParamenter = mapper.keys.size > 1
+
+                            val parameters: MutableList<Any> = mutableListOf()
 
                             for ((key, value) in mapper) {
-                                val initializer = ProcessorHelper.format(value = value)
-
-                                fun addCodeBlock() {
-                                    ProcessorHelper.createInitializerWithCodeBlock(
-                                        classListType,
-                                        true,
-                                        value,
-                                        initializer
-                                    ).apply {
-                                        listCodeBlock.add(this)
-                                    }
-
-                                }
+                                parameters.add(value)
 
                                 if (lastKey != key && index == 0) {
                                     lastKey = key
@@ -127,36 +114,13 @@ open class MockProcessor : AbstractProcessor() {
                                     ProcessorHelper.createParameter(key, typeClass).apply {
                                         constructor.addParameter(this)
                                     }
-
-                                    addCodeBlock()
-                                } else {
-
-                                    addCodeBlock()
-
                                 }
 
                             }
 
-                        }
-
-                        val moreOneParameterListCodeBlock: MutableList<CodeBlock> = mutableListOf()
-
-                        if (moreOneParamenter) {
-
-                            for ((index, mapper) in map.withIndex()) {
-
-                                val parameters: MutableList<Any> = mutableListOf()
-
-                                for ((key, value) in mapper) {
-                                    parameters.add(value)
-                                }
-
-                                ProcessorHelper.createMultiParameters(parameters).apply {
-                                    moreOneParameterListCodeBlock.add(this)
-                                }
-
+                            ProcessorHelper.createMultiParameters(parameters).apply {
+                                listCodeBlock.add(this)
                             }
-
 
                         }
 
@@ -167,25 +131,14 @@ open class MockProcessor : AbstractProcessor() {
                             }
                         }
 
-                        if (moreOneParamenter) {
-                            ProcessorHelper.createInitializerMultiParametersWithCodeBlock(
-                                classListType,
-                                moreOneParameterListCodeBlock,
-                                true
-                            ).apply {
-                                ProcessorHelper.createMutableListWithCodeBlock(classListType, this).apply {
-                                    mockType.addProperty(this)
-                                }
+                        ProcessorHelper.createInitializerMultiParametersWithCodeBlock(
+                            classListType,
+                            listCodeBlock,
+                            true
+                        ).apply {
+                            ProcessorHelper.createMutableListWithCodeBlock(classListType, this).apply {
+                                mockType.addProperty(this)
                             }
-                        } else {
-                            ProcessorHelper.createMutableListWithCodeBlock(classListType, listCodeBlock)
-                                .apply {
-                                    mockType.addProperty(this)
-                                }
-                        }
-
-                        ProcessorHelper.createMutableListField(classListType, map.size, true).apply {
-                            // mockType.addProperty(this)
                         }
 
                     }
