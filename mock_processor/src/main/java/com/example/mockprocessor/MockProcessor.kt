@@ -84,6 +84,12 @@ open class MockProcessor : AbstractProcessor() {
 
                     }
 
+                    if (mockWith.list) {
+                        ProcessorHelper.createMutableListField(classType, mockWith.listSize).apply {
+                            mockType.addProperty(this)
+                        }
+                    }
+
                     mockType.build().let {
                         ProcessorHelper.createFile(packageName, mockClassName, it, filer)
                     }

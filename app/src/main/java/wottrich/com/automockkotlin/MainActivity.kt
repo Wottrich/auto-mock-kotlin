@@ -6,16 +6,16 @@ import android.widget.Toast
 import wottrich.com.mock_annotations.MockField
 import wottrich.com.mock_annotations.MockModel
 
-@MockModel(customName = "CustomerModel", list = true)
+@MockModel(customName = "CustomerModel", list = true, body = "{\"name\":\"Lucas\", \"age\":34}")
 open class MainActivity : AppCompatActivity() {
 
     // body = "{\"name\":\"Lucas\", \"age\":34}"
 
-    @MockField(String::class, "Lucas", "name")
-    private var name: String? = null
+    //@MockField(String::class, "Lucas", "name")
+    //private var name: String? = null
 
-    @MockField(Int::class, "10", "age")
-    private var age: Int? = null
+    //@MockField(Int::class, "10", "age")
+    //private var age: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

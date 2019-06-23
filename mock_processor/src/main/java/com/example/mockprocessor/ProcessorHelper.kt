@@ -24,7 +24,7 @@ object ProcessorHelper {
         return when (value) {
             is Int -> Int::class
             is Double -> Double::class
-            else -> Int::class
+            else -> String::class
         }
     }
 
