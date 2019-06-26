@@ -3,6 +3,7 @@ package wottrich.com.automockkotlin
 import com.google.gson.Gson
 import wottrich.com.mock_annotations.MockModel
 
+
 object Obj1 {
 
     var list: MutableList<Any> = mutableListOf()
@@ -16,8 +17,7 @@ class Obj2 {
 
 }
 
-fun main() {
-
+fun ex1 () {
     val body = "[{\"name\": \"Lucas\", \"age\":19, \"address\":\"Rua B\", \"canWork\":true, \"child\":[{\"name\":Luiz}, {\"name\":\"Leandro\"}]}, {\"name\": \"Marcelo\", \"age\":20, \"address\":\"Rua C\", \"canWork\":false}]"
 
     val map = Gson().fromJson(body, List::class.java) as List<Map<String, Any>>
@@ -66,6 +66,48 @@ fun main() {
             println(o2.name)
             println(o2.obj)
 
+        }
+
+    }
+}
+
+
+
+fun main() {
+
+    val body = "{\"simulation\": {\"id\": \"FUSeneoSTDoN_A7jSHpNUg\", \"car\": {\"id\": \"aYdDChhWtH2UGMAhvzzLsQ\", \"description\": \"Clio\", \"url\": null, \"brand\": \"Clio\", \"selected\": true, \"gender\": \"PARTICULAR\", \"vehicleType\": \"USADO\", \"version\": {\"id\": \"gdakHXqtMpXzHY5fi1VM1A\", \"description\": \"Clio Campus Hi-Flex 1.0 16V 3p\", \"fipe\": \"025150-0\", \"yearManufacture\": 2010, \"yearModel\": 2010, \"price\": 15000, \"fuel\": {\"id\": \"4tceabM1b30zdE6xH8mTtQ\", \"description\": \"Gasolina\", \"importCode\": \"G\", \"active\": true}, \"options\": [], \"acessories\": []}}}}"
+
+    val map = Gson().fromJson(body, Any::class.java)
+
+    if (map is List<*>) {
+        println("list")
+    } else if (map is Map<*, *>) {
+        val mapper = map as Map<String, Any>
+        for ((key, value) in mapper) {
+
+            println(key)
+
+            if (value is Map<*, *>) {
+                val submapper = value as Map<String, Any>
+                loadGson(0, submapper)
+            }
+
+        }
+
+    }
+}
+
+fun loadGson (count: Int, map: Map<String, Any>) {
+    var _count = count
+    for ((key, value) in map) {
+
+        if (value is Map<*, *>) {
+            val mapper = value as Map<String, Any>
+            _count++
+            println("$count sub - $mapper")
+            loadGson(count, mapper)
+        } else {
+            println("$key - $value")
         }
 
     }

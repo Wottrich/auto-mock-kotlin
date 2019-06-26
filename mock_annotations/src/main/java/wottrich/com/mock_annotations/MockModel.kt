@@ -13,5 +13,6 @@ annotation class MockModel(
     val serializedName: Boolean = false,
     val list: Boolean = false,
     val listSize: Int = 5,
-    val body: String = ""
+    val body: String = "",
+    val archive: String = ""
 )

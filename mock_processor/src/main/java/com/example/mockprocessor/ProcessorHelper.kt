@@ -2,9 +2,6 @@ package com.example.mockprocessor
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import java.io.File
-import java.lang.NullPointerException
-import java.lang.RuntimeException
 import javax.annotation.processing.Filer
 import javax.annotation.processing.Messager
 import javax.tools.Diagnostic
@@ -17,7 +14,10 @@ object ProcessorHelper {
     private val arrayList = ClassName("kotlin.collections", "ArrayList")
     private val mutable = ClassName("kotlin.collections", "MutableList")
 
-    private val packageName: String = ""
+    lateinit var messager: Messager
+
+    private val classes: MutableList<String> = mutableListOf()
+    private val objects: MutableList<String> = mutableListOf()
 
     internal fun typeClass(value: Any? = null, type: TypeName? = null): KClass<*> {
         if (type != null) {
@@ -54,8 +54,87 @@ object ProcessorHelper {
         }
     }
 
-    internal fun loadListGson (nameClass: String, map: List<Map<String, Any>>, filer: Filer) : TypeSpec.Builder {
-        val typeSpec = TypeSpec.classBuilder(nameClass)
+    internal fun loadGson (typeSpec: TypeSpec.Builder, className: ClassName, nameClass: String = "", packageName: String, map: Map<String, Any>, filer: Filer, messager: Messager){
+        var lastKey = ""
+        var listCodeBlock: MutableList<CodeBlock> = mutableListOf()
+
+        val parameters: MutableList<Any> = mutableListOf()
+
+        for ((key, value) in map) {
+
+            parameters.add(value)
+
+            if (value is List<*>) {
+                value as List<Map<String, Any>>
+
+                val newName: String = key.substring(0,1).toUpperCase() + key.substring(1)
+                val newTypeSpec = TypeSpec.classBuilder(newName)
+                classes.add(newName)
+
+                loadListGson(newTypeSpec, newName, packageName, value, filer).apply {
+                    typeSpec.addProperty(this)
+                }
+
+            } else if (value is Map<*, *>) {
+                value as Map<String, Any>
+
+                val newName: String = key.substring(0,1).toUpperCase() + key.substring(1)
+                val newClassName = ClassName(packageName, newName)
+                val newTypeSpec = TypeSpec.objectBuilder(newName)
+                objects.add(newName)
+
+                loadGson(newTypeSpec, newClassName, newName, packageName, value, filer, messager)
+
+                val property = PropertySpec.builder(key, newClassName.topLevelClassName()).let {
+                    it.initializer(newName)
+                    it.build()
+                }
+
+                typeSpec.addProperty(property)
+            } else {
+                if (lastKey != key) {
+                    lastKey = key
+                    val typeClass = typeClass(value = value)
+                    val initializer = format(value = value)
+
+
+                    //messager.printMessage(Diagnostic.Kind.WARNING, "$key - $value")
+
+                    createField(key, typeClass, value, initializer).apply {
+                        typeSpec.addProperty(this)
+                    }
+                }
+
+            }
+
+        }
+
+        createMultiParameters(parameters).apply {
+            listCodeBlock.add(this)
+        }
+
+        typeSpec.build().let {
+            objects.add(it.name ?: "null")
+            messager.printMessage(Diagnostic.Kind.WARNING, "File Created - ${it.name}")
+            createFile(packageName, nameClass, it, filer)
+        }
+
+        val nameList = className.simpleName.substring(0, 1).toLowerCase() + className.simpleName.substring(1)
+
+        createInitializerMultiParametersWithCodeBlock(className, listCodeBlock, true).apply {
+            createMutableListWithCodeBlock(nameList, className, this).apply {
+                typeSpec.addProperty(this)
+            }
+        }
+
+        for (string in objects) {
+            //messager.printMessage(Diagnostic.Kind.WARNING, string)
+        }
+
+    }
+
+    internal fun loadListGson (typeSpec: TypeSpec.Builder, nameClass: String, packageName: String, map: List<Map<String, Any>>, filer: Filer) : PropertySpec {
+        val classListType = ClassName(packageName, nameClass)
         var lastKey = ""
         var lastIndex: Int
         val constructor = FunSpec.constructorBuilder()
@@ -68,14 +147,15 @@ object ProcessorHelper {
             for ((key, value) in mapper) {
                 if (value is List<*>) {
                     value as List<Map<String, Any>>
-                    loadListGson(key, value, filer).apply {
-                        this.let { type ->
-                            type.primaryConstructor(constructor.build())
-                            createFile(packageName, nameClass, type.build(), filer)
-                        }
-                        parameters.add(this)
+
+                    val newName: String = key.substring(0,1).toUpperCase() + key.substring(1)
+                    val newTypeSpec = TypeSpec.classBuilder(newName)
+
+                    loadListGson(newTypeSpec, newName, packageName, value, filer).apply {
+                        typeSpec.addProperty(this)
                     }
                 } else {
+                    parameters.add(value)
                     if (lastKey != key || lastIndex != index) {
                         lastKey = key
 
@@ -93,9 +173,30 @@ object ProcessorHelper {
 
         }
 
+        typeSpec.let { type ->
+            type.primaryConstructor(constructor.build())
 
+            for (field in constructor.parameters) {
 
-        return typeSpec
+                type.addProperty(PropertySpec.builder(field.name, field.type).initializer(field.name).build())
+
+            }
+
+            //val file = FileSpec.builder(packageName, typeSpec)
+            type.build().let {
+                messager.printMessage(Diagnostic.Kind.WARNING, "File List Created - ${it.name}")
+                createFile(packageName, nameClass, it, filer)
+            }
+        }
+
+        val nameList = classListType.simpleName.substring(0, 1).toLowerCase() + classListType.simpleName.substring(1)
+
+        createInitializerMultiParametersWithCodeBlock(classListType, listCodeBlock, true).apply {
+            createMutableListWithCodeBlock(nameList, classListType, this).apply {
+                typeSpec.addProperty(this)
+                return this
+            }
+        }
     }
 
     internal fun createInitializerWithCodeBlock(
@@ -151,7 +252,6 @@ object ProcessorHelper {
                     this.add("(")
                     this.add(code)
                     this.add(")")
-
                 } else {
                     this.add("%T", classType)
                 }
@@ -163,12 +263,13 @@ object ProcessorHelper {
     }
 
     internal fun createMutableListWithCodeBlock(
+        key: String,
         classType: ClassName,
         listCodeBlock: MutableList<CodeBlock>
     ): PropertySpec {
         val mutClassType = mutable.parameterizedBy(classType)
 
-        return PropertySpec.builder("list", mutClassType).let {
+        return PropertySpec.builder(key, mutClassType).let {
             val codeBlock = buildCodeBlock {
 
                 this.add("mutableListOf(")
@@ -223,8 +324,17 @@ object ProcessorHelper {
         }
     }
 
-    internal fun createField(name: String, type: KClass<*>, value: Any, initializer: String): PropertySpec {
-        return PropertySpec.builder(name, type).let {
+    internal fun createObjectField (name: String, type: KClass<*>, initializer: String) : PropertySpec {
+        return PropertySpec.builder(name, type::class.asTypeName()).let {
+            it.initializer(buildCodeBlock { this.add("$initializer = $initializer") })
+            it.build()
+        }
+    }
+
+    internal fun createField(name: String, type: KClass<*>, value: Any?, initializer: String): PropertySpec {
+
+
+        return PropertySpec.builder(name, type.asTypeName().copy(nullable = value == null)).let {
             it.initializer(initializer, value)
             it.build()
         }

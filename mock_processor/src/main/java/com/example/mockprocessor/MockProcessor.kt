@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
 import com.squareup.kotlinpoet.*
 import wottrich.com.mock_annotations.MockField
 import wottrich.com.mock_annotations.MockModel
+import java.io.BufferedReader
+import java.io.File
 import java.io.Serializable
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
@@ -43,11 +45,11 @@ open class MockProcessor : AbstractProcessor() {
         if (roundEnvironment == null)
             return false
 
+        ProcessorHelper.messager = messager
+
         for (element in roundEnvironment.getElementsAnnotatedWith(MockModel::class.java)) {
             val mockWith = element.getAnnotation(MockModel::class.java) as MockModel
             val packageName = elementsUtils.getPackageOf(element).qualifiedName.toString()
-
-            ProcessorHelper
 
             //feature name class
             val mockClassName =
@@ -67,91 +69,31 @@ open class MockProcessor : AbstractProcessor() {
             if (element.kind == ElementKind.CLASS) {
                 if (mockWith.body.isNotEmpty()) {
 
-                    if (mockWith.body.substring(0, 1) != "[") {
+                    val map = Gson().fromJson(mockWith.body, Any::class.java)
 
-                        //<editor-folder defaultstate="Collapsed" desc="Body Json">
-                        val map = Gson().fromJson(mockWith.body, Map::class.java) as Map<String, Any>
+                    loadBody(
+                        map = map,
+                        classHeader = mockType,
+                        className = classType,
+                        mockClassName = mockClassName,
+                        packageName = packageName
+                    )
 
-                        for ((key, value) in map) {
+                } else if (mockWith.archive.isNotEmpty()) {
 
-                            val typeClass = ProcessorHelper.typeClass(value = value)
-                            val initializer = ProcessorHelper.format(value = value)
+                    val buffer: BufferedReader = File( "/Users/wottrich/Desktop/Gits/auto-mock-kotlin/mock_processor/src/main/java/com/example/mockprocessor/simulation.json").bufferedReader()
+                    val inputString = buffer.use { it.readText() }
 
-                            ProcessorHelper.createField(key, typeClass, value, initializer).apply {
-                                mockType.addProperty(this)
-                            }
+                    val map = Gson().fromJson(inputString, Any::class.java)
 
-                        }
+                    loadBody(
+                        map = map,
+                        classHeader = mockType,
+                        className = classType,
+                        mockClassName = mockClassName,
+                        packageName = packageName
+                    )
 
-                        if (mockWith.list) {
-                            ProcessorHelper.createMutableListField(classType, mockWith.listSize).apply {
-                                mockType.addProperty(this)
-                            }
-                        }
-                        //</editor-folder>
-
-                    } else {
-
-                        val map = Gson().fromJson(mockWith.body, List::class.java) as List<Map<String, Any>>
-
-                        val name = "${mockClassName}List"
-                        val classListType = ClassName(packageName, name)
-                        var listClass = TypeSpec.classBuilder(name)
-                        var lastKey = ""
-                        val constructor = FunSpec.constructorBuilder()
-
-                        var listCodeBlock: MutableList<CodeBlock>
-
-                        ProcessorHelper.loadListGson(name, map, filer).apply {
-                            listClass = this
-                        }
-
-                        for ((index, mapper) in map.withIndex()) {
-
-                            val parameters: MutableList<Any> = mutableListOf()
-
-                            for ((key, value) in mapper) {
-                                parameters.add(value)
-
-                                if (lastKey != key && index == 0) {
-                                    lastKey = key
-
-                                    val typeClass = ProcessorHelper.typeClass(value = value)
-                                    ProcessorHelper.createParameter(key, typeClass).apply {
-                                        constructor.addParameter(this)
-                                    }
-                                }
-
-                            }
-
-                            ProcessorHelper.createMultiParameters(parameters).apply {
-                                //listCodeBlock.add(this)
-                            }
-
-                        }
-
-                        listClass.let {
-                            it.primaryConstructor(constructor.build())
-                            it.build().let {
-                                ProcessorHelper.createFile(packageName, name, it, filer)
-                            }
-                        }
-
-                        ProcessorHelper.createInitializerMultiParametersWithCodeBlock(
-                            classListType,
-                            mutableListOf(),
-                            true
-                        ).apply {
-                            ProcessorHelper.createMutableListWithCodeBlock(classListType, this).apply {
-                                mockType.addProperty(this)
-                            }
-                        }
-
-                    }
-
-                    mockType.build().let {
-                        ProcessorHelper.createFile(packageName, mockClassName, it, filer)
-                    }
                 } else {
 
                     //<editor-folder defaultstate="Collapsed" desc="MockField">
@@ -207,6 +149,36 @@ open class MockProcessor : AbstractProcessor() {
             }
         }
         return true
+    }
+
+    private fun loadBody (map: Any, classHeader: TypeSpec.Builder, className: ClassName, mockClassName: String, packageName: String) {
+
+        if (map is Map<*, *>) {
+            val mapper = map as Map<String, Any>
+
+            messager.printMessage(Diagnostic.Kind.WARNING, "Init")
+            ProcessorHelper.loadGson(
+                typeSpec = classHeader,
+                className = className,
+                nameClass = mockClassName,
+                packageName = packageName,
+                map = mapper,
+                filer = filer,
+                messager = messager
+            )
+
+        } else if (map is List<*>) {
+            val list = map as List<Map<String, Any>>
+
+            val name = "${mockClassName}List"
+            val listClass = TypeSpec.classBuilder(name)
+
+            ProcessorHelper.loadListGson(listClass, name, packageName, list, filer).apply {
+                classHeader.addProperty(this)
+            }
+
+        }
+
     }
 
     override fun getSupportedAnnotationTypes(): Set<String> {

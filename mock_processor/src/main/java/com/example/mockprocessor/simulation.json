@@ -1,0 +1,1695 @@
+{
+  "simulation": {
+    "id": "FUSeneoSTDoN_A7jSHpNUg",
+    "car": {
+      "id": "aYdDChhWtH2UGMAhvzzLsQ",
+      "description": "Clio",
+      "url": null,
+      "brand": "Clio",
+      "selected": true,
+      "gender": "PARTICULAR",
+      "vehicleType": "USADO",
+      "version": {
+        "id": "gdakHXqtMpXzHY5fi1VM1A",
+        "description": "Clio Campus Hi-Flex 1.0 16V 3p",
+        "fipe": "025150-0",
+        "yearManufacture": 2010,
+        "yearModel": 2010,
+        "price": 15000,
+        "fuel": {
+          "id": "4tceabM1b30zdE6xH8mTtQ",
+          "description": "Gasolina",
+          "importCode": "G",
+          "active": true
+        },
+        "options": [],
+        "acessories": []
+      }
+    },
+    "client": {
+      "id": "qA38aYOcCM723bvyDcUXvQ",
+      "cpfCnpj": "21724005057",
+      "name": "TESTE USADO",
+      "email": "sibele.santos@rcibanque.com",
+      "phoneType": "PROPRIO",
+      "phone": {
+        "id": "1kCTKsHui672U_MMbZGsJw",
+        "number": "41999413593",
+        "extension": null
+      },
+      "province": {
+        "id": "0jAuUDBNYn4FeFaz3TuXDg",
+        "description": "PARANA",
+        "acronym": "PR"
+      },
+      "country": {
+        "id": "0D9VePESPpxdm0zbRnGuog",
+        "description": "Brasil"
+      },
+      "typePerson": "PF",
+      "sex": "FEMININO",
+      "birthDate": 631202400000,
+      "civilState": {
+        "id": "UnuqMiFy1ykUyQA4QG8HKw",
+        "value": null,
+        "description": "SOLTEIRO",
+        "idDecript": "1"
+      },
+      "cellphone": {
+        "id": "ktQVHhHLXhW6iySNcGJrzA",
+        "number": "41999413593",
+        "extension": null
+      },
+      "naturalness": "Curitiba",
+      "politicalExposition": {
+        "id": "0U9rHGOrCQF_ygGLfXkbyw",
+        "description": "NÃO"
+      },
+      "educationDegree": null,
+      "handicapped": false,
+      "mothersName": "Sibele Santos",
+      "fathersName": null,
+      "documentType": {
+        "id": "UnuqMiFy1ykUyQA4QG8HKw",
+        "description": "CARTEIRA DE IDENTIDADE",
+        "idDecript": null
+      },
+      "numberDocument": "82224440",
+      "countryDocument": {
+        "id": "0D9VePESPpxdm0zbRnGuog",
+        "description": "Brasil"
+      },
+      "provinceDocument": {
+        "id": "0jAuUDBNYn4FeFaz3TuXDg",
+        "description": "PARANA",
+        "acronym": "PR"
+      },
+      "dateIssue": 1262354400000,
+      "issuingBody": {
+        "id": "wcsdYN8C9qrrADgTZ3tfww",
+        "description": "SECRETARIA DE SEGURANCA PUBLICA"
+      },
+      "dateValid": null,
+      "legalNature": null,
+      "address": {
+        "id": "edO_ARaPXMrPbpxLJZb1nw",
+        "cep": "80250080",
+        "number": "463",
+        "address": "Rua Pasteur",
+        "complement": null,
+        "neighborhood": "Batel",
+        "city": "Curitiba",
+        "province": {
+          "id": "0jAuUDBNYn4FeFaz3TuXDg",
+          "description": "PARANA",
+          "acronym": "PR"
+        },
+        "residenceType": null,
+        "residesInAddressSince": null,
+        "mailingAddress": null
+      },
+      "companySize": null,
+      "ownSeat": false,
+      "monthlyBilling": 10,
+      "economicActivityGroup": null,
+      "economicActivity": null,
+      "certifiedAgent": null,
+      "creditReport": "ST:380;",
+      "spouse": null,
+      "company": {
+        "id": "bAn-K3LXtqty-raMFcstug",
+        "name": "banco rci",
+        "occupation": {
+          "id": "IMQo8IoeycLhRtSLb8Jh2A",
+          "description": "ASSALARIADO",
+          "importCode": null,
+          "idDecript": null
+        },
+        "profession": {
+          "id": "o9l9KeCue0sniB2KHEO6mA",
+          "description": "ACOUGUEIRO"
+        },
+        "cnpj": null,
+        "address": {
+          "id": "mD3YhF4VxFewFNTW2e4nOw",
+          "cep": null,
+          "number": null,
+          "address": null,
+          "complement": null,
+          "neighborhood": null,
+          "city": null,
+          "province": null,
+          "residenceType": null,
+          "residesInAddressSince": null,
+          "mailingAddress": null
+        },
+        "comercialPhone": {
+          "id": "ZFddNzpag5pb6mMD0gH9Pw",
+          "number": "4130251554",
+          "extension": null
+        },
+        "economicActivityGroup": null,
+        "economicActivity": null,
+        "size": null,
+        "admissionDate": null,
+        "patrimony": 10,
+        "incomeType": null,
+        "proofIncomeType": null,
+        "monthlyIncome": 10,
+        "otherIncomes": null,
+        "ownSeat": false
+      },
+      "reference1": null,
+      "reference2": null,
+      "bankDetails": {
+        "id": "Y6pBIAzfmMb2OxPEVA5L1A",
+        "branch": "",
+        "branchDigit": "",
+        "accountDigit": "",
+        "account": "",
+        "customerSince": null,
+        "accountType": "CORRENTE",
+        "phoneBranch": {
+          "id": null,
+          "number": null,
+          "extension": null
+        },
+        "bank": null
+      },
+      "carDetails": {
+        "chassiNumber": "93Y9SR3JAHJ536420",
+        "registerNumber": "aaa2020",
+        "registrationProvince": {
+          "id": "0jAuUDBNYn4FeFaz3TuXDg",
+          "description": "PARANA",
+          "acronym": "PR"
+        },
+        "licensingProvince": {
+          "id": "0jAuUDBNYn4FeFaz3TuXDg",
+          "description": "PARANA",
+          "acronym": "PR"
+        },
+        "vehicleColor": {
+          "id": "IPrlwlfEEwFM77SEeCRJCw",
+          "description": "Azul"
+        },
+        "renavam": "1100993417",
+        "vehicleOrigin": "N",
+        "manufactureYear": 2010
+      },
+      "guarantor1": null,
+      "guarantor2": null
+    },
+    "saleType": {
+      "id": "7OyOw6t3i0_lVUpRDt7gRg",
+      "description": "Usado",
+      "idDecript": "2"
+    },
+    "tc": false,
+    "vizualization": true,
+    "brand": {
+      "id": "chdw-Axacu0C4dX3lMQ8Vw",
+      "description": "RENAULT",
+      "showDirectSale": false
+    },
+    "calculations": [
+      {
+        "id": "BSdWd7pkZ8XiAE53XnXjig",
+        "financialType": {
+          "financeTypeId": "TSuNAmUeALjVgapGicQP3g",
+          "financeTypeIdDescript": null,
+          "description": "CDC"
+        },
+        "financialTable": {
+          "productId": "tGVF93lh9v5RRS_rtFBn-w",
+          "description": "3216 - TABELA NET CDC USADOS - TESTE RCI",
+          "promotional": null,
+          "productInformation": null,
+          "listProductPromotional": null,
+          "delayDefault": null,
+          "delayDefaultExclusive": null,
+          "termDefault": null,
+          "defaultDepositPercent": null,
+          "defaultCommissionId": null,
+          "mainTable": null,
+          "active": null,
+          "validityStart": null,
+          "validityEnd": null,
+          "financeType": null,
+          "type": null,
+          "financialBrands": null,
+          "productType": null
+        },
+        "coeficiente": {
+          "coeffcientId": null,
+          "coefficient": 0.04057,
+          "taxCoefficient": 0.0202,
+          "depositPercent": 0
+        },
+        "entranceValue": 0,
+        "delay": 30,
+        "rates": [
+          {
+            "id": "7XC-8y7DRA9BH5y4JdTlbQ",
+            "value": 400,
+            "province": null,
+            "taxType": "TR"
+          },
+          {
+            "id": "KHS8jueAS4Jy1c4okRFQgA",
+            "value": 100,
+            "province": null,
+            "taxType": "TAB"
+          },
+          {
+            "id": "Jnfs4TtJcGPBNdm38JHZyQ",
+            "value": 550,
+            "province": null,
+            "taxType": "TC"
+          }
+        ],
+        "commission": {
+          "id": "4tceabM1b30zdE6xH8mTtQ",
+          "description": "05",
+          "commissionTemp": null,
+          "temp": null,
+          "selected": null
+        },
+        "term": 36,
+        "totalValue": 15000,
+        "totalAmount": 16050,
+        "instalmentAmount": 694.16,
+        "montlyRate": 2.02,
+        "financedAmount": 16430,
+        "installments": [
+          {
+            "numberInstallment": 1,
+            "dueDate": 1564081303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 2,
+            "dueDate": 1566759703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 3,
+            "dueDate": 1569438103000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 4,
+            "dueDate": 1572026503000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 5,
+            "dueDate": 1574704903000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 6,
+            "dueDate": 1577296903000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 7,
+            "dueDate": 1579975303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 8,
+            "dueDate": 1582657303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 9,
+            "dueDate": 1585162903000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 10,
+            "dueDate": 1587841303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 11,
+            "dueDate": 1590433303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 12,
+            "dueDate": 1593111703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 13,
+            "dueDate": 1595703703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 14,
+            "dueDate": 1598382103000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 15,
+            "dueDate": 1601060503000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 16,
+            "dueDate": 1603648903000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 17,
+            "dueDate": 1606327303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 18,
+            "dueDate": 1608919303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 19,
+            "dueDate": 1611597703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 20,
+            "dueDate": 1614279703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 21,
+            "dueDate": 1616698903000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 22,
+            "dueDate": 1619377303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 23,
+            "dueDate": 1621969303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 24,
+            "dueDate": 1624647703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 25,
+            "dueDate": 1627239703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 26,
+            "dueDate": 1629918103000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 27,
+            "dueDate": 1632596503000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 28,
+            "dueDate": 1635184903000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 29,
+            "dueDate": 1637863303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 30,
+            "dueDate": 1640455303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 31,
+            "dueDate": 1643133703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 32,
+            "dueDate": 1645815703000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 33,
+            "dueDate": 1648234903000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 34,
+            "dueDate": 1650913303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 35,
+            "dueDate": 1653505303000,
+            "amount": 694.16,
+            "factor": null
+          },
+          {
+            "numberInstallment": 36,
+            "dueDate": 1656183703000,
+            "amount": 694.16,
+            "factor": null
+          }
+        ],
+        "installmentsGroup": [
+          {
+            "quantity": 36,
+            "instalmentAmount": 694.16
+          }
+        ],
+        "selected": true,
+        "services": [
+          {
+            "id": "UnuqMiFy1ykUyQA4QG8HKw",
+            "description": "Seguro proteção financeira",
+            "amount": 0,
+            "serviceTypeId": 5,
+            "importCodeOmega": "0",
+            "prices": null,
+            "idParam": null,
+            "params": null
+          },
+          {
+            "id": "7OyOw6t3i0_lVUpRDt7gRg",
+            "description": "Seguro Tranquilidade",
+            "amount": 380,
+            "serviceTypeId": 16,
+            "importCodeOmega": "1",
+            "prices": null,
+            "idParam": null,
+            "params": null
+          }
+        ],
+        "terms": null,
+        "creditReport": "ST:380;",
+        "storeControl": null,
+        "repackage": null,
+        "insuranceQuoteData": null,
+        "carInsuranceSimulationDTO": null,
+        "adp": null,
+        "listPreAnalisys": null,
+        "engineRemunerationId": null,
+        "executionId": null,
+        "couponCode": null,
+        "strategy": null
+      },
+      {
+        "id": "ME_CAh80hGIUUK3xCEv2mQ",
+        "financialType": {
+          "financeTypeId": "TSuNAmUeALjVgapGicQP3g",
+          "financeTypeIdDescript": null,
+          "description": "CDC"
+        },
+        "financialTable": {
+          "productId": "m45cKl3iQQen-KnOfOwGlg",
+          "description": "3113 - TABELA NET RBP TAXA 1,79",
+          "promotional": null,
+          "productInformation": null,
+          "listProductPromotional": null,
+          "delayDefault": null,
+          "delayDefaultExclusive": null,
+          "termDefault": null,
+          "defaultDepositPercent": null,
+          "defaultCommissionId": null,
+          "mainTable": null,
+          "active": null,
+          "validityStart": null,
+          "validityEnd": null,
+          "financeType": null,
+          "type": null,
+          "financialBrands": null,
+          "productType": null
+        },
+        "coeficiente": {
+          "coeffcientId": null,
+          "coefficient": 0.03378,
+          "taxCoefficient": 0.0202,
+          "depositPercent": 0
+        },
+        "entranceValue": 0,
+        "delay": 30,
+        "rates": [
+          {
+            "id": "B3JRC4bIa5xtvjair0HyYQ",
+            "value": 550,
+            "province": null,
+            "taxType": "TC"
+          },
+          {
+            "id": "rfRLslngkgFyb_vB_cCdCw",
+            "value": 400,
+            "province": null,
+            "taxType": "TR"
+          },
+          {
+            "id": "eWgAAW9cCYRZZFcp5Hy8rA",
+            "value": 100,
+            "province": null,
+            "taxType": "TAB"
+          }
+        ],
+        "commission": {
+          "id": "OQwBfoan9-ZTReGBRz-90Q",
+          "description": "04",
+          "commissionTemp": null,
+          "temp": null,
+          "selected": null
+        },
+        "term": 48,
+        "totalValue": 15000,
+        "totalAmount": 16050,
+        "instalmentAmount": 542.17,
+        "montlyRate": 2.02,
+        "financedAmount": 16050,
+        "installments": [
+          {
+            "numberInstallment": 1,
+            "dueDate": 1564081303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 2,
+            "dueDate": 1566759703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 3,
+            "dueDate": 1569438103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 4,
+            "dueDate": 1572026503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 5,
+            "dueDate": 1574704903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 6,
+            "dueDate": 1577296903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 7,
+            "dueDate": 1579975303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 8,
+            "dueDate": 1582657303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 9,
+            "dueDate": 1585162903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 10,
+            "dueDate": 1587841303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 11,
+            "dueDate": 1590433303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 12,
+            "dueDate": 1593111703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 13,
+            "dueDate": 1595703703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 14,
+            "dueDate": 1598382103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 15,
+            "dueDate": 1601060503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 16,
+            "dueDate": 1603648903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 17,
+            "dueDate": 1606327303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 18,
+            "dueDate": 1608919303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 19,
+            "dueDate": 1611597703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 20,
+            "dueDate": 1614279703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 21,
+            "dueDate": 1616698903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 22,
+            "dueDate": 1619377303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 23,
+            "dueDate": 1621969303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 24,
+            "dueDate": 1624647703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 25,
+            "dueDate": 1627239703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 26,
+            "dueDate": 1629918103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 27,
+            "dueDate": 1632596503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 28,
+            "dueDate": 1635184903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 29,
+            "dueDate": 1637863303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 30,
+            "dueDate": 1640455303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 31,
+            "dueDate": 1643133703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 32,
+            "dueDate": 1645815703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 33,
+            "dueDate": 1648234903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 34,
+            "dueDate": 1650913303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 35,
+            "dueDate": 1653505303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 36,
+            "dueDate": 1656183703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 37,
+            "dueDate": 1658775703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 38,
+            "dueDate": 1661454103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 39,
+            "dueDate": 1664132503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 40,
+            "dueDate": 1666720903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 41,
+            "dueDate": 1669399303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 42,
+            "dueDate": 1671991303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 43,
+            "dueDate": 1674669703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 44,
+            "dueDate": 1677348103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 45,
+            "dueDate": 1679770903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 46,
+            "dueDate": 1682449303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 47,
+            "dueDate": 1685041303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 48,
+            "dueDate": 1687719703000,
+            "amount": 542.17,
+            "factor": null
+          }
+        ],
+        "installmentsGroup": [
+          {
+            "quantity": 48,
+            "instalmentAmount": 542.17
+          }
+        ],
+        "selected": false,
+        "services": [],
+        "terms": null,
+        "creditReport": "ST:380;",
+        "storeControl": null,
+        "repackage": null,
+        "insuranceQuoteData": null,
+        "carInsuranceSimulationDTO": null,
+        "adp": null,
+        "listPreAnalisys": null,
+        "engineRemunerationId": null,
+        "executionId": null,
+        "couponCode": null,
+        "strategy": null
+      },
+      {
+        "id": "y3KJkRNBd2j60z0TzbLGGQ",
+        "financialType": {
+          "financeTypeId": "TSuNAmUeALjVgapGicQP3g",
+          "financeTypeIdDescript": null,
+          "description": "CDC"
+        },
+        "financialTable": {
+          "productId": "m45cKl3iQQen-KnOfOwGlg",
+          "description": "3113 - TABELA NET RBP TAXA 1,79",
+          "promotional": null,
+          "productInformation": null,
+          "listProductPromotional": null,
+          "delayDefault": null,
+          "delayDefaultExclusive": null,
+          "termDefault": null,
+          "defaultDepositPercent": null,
+          "defaultCommissionId": null,
+          "mainTable": null,
+          "active": null,
+          "validityStart": null,
+          "validityEnd": null,
+          "financeType": null,
+          "type": null,
+          "financialBrands": null,
+          "productType": null
+        },
+        "coeficiente": {
+          "coeffcientId": null,
+          "coefficient": 0.03378,
+          "taxCoefficient": 0.0202,
+          "depositPercent": 0
+        },
+        "entranceValue": 0,
+        "delay": 30,
+        "rates": [
+          {
+            "id": "X0dyyJKZtpwsB8y1cAMt2g",
+            "value": 400,
+            "province": null,
+            "taxType": "TR"
+          },
+          {
+            "id": "qPvyAcseiRa4mnNSkpjtVw",
+            "value": 100,
+            "province": null,
+            "taxType": "TAB"
+          },
+          {
+            "id": "DSSzXl-L7XpBTHP13tVcdQ",
+            "value": 550,
+            "province": null,
+            "taxType": "TC"
+          }
+        ],
+        "commission": {
+          "id": "OQwBfoan9-ZTReGBRz-90Q",
+          "description": "04",
+          "commissionTemp": null,
+          "temp": null,
+          "selected": null
+        },
+        "term": 48,
+        "totalValue": 15000,
+        "totalAmount": 16050,
+        "instalmentAmount": 542.17,
+        "montlyRate": 2.02,
+        "financedAmount": 16050,
+        "installments": [
+          {
+            "numberInstallment": 1,
+            "dueDate": 1564081303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 2,
+            "dueDate": 1566759703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 3,
+            "dueDate": 1569438103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 4,
+            "dueDate": 1572026503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 5,
+            "dueDate": 1574704903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 6,
+            "dueDate": 1577296903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 7,
+            "dueDate": 1579975303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 8,
+            "dueDate": 1582657303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 9,
+            "dueDate": 1585162903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 10,
+            "dueDate": 1587841303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 11,
+            "dueDate": 1590433303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 12,
+            "dueDate": 1593111703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 13,
+            "dueDate": 1595703703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 14,
+            "dueDate": 1598382103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 15,
+            "dueDate": 1601060503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 16,
+            "dueDate": 1603648903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 17,
+            "dueDate": 1606327303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 18,
+            "dueDate": 1608919303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 19,
+            "dueDate": 1611597703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 20,
+            "dueDate": 1614279703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 21,
+            "dueDate": 1616698903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 22,
+            "dueDate": 1619377303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 23,
+            "dueDate": 1621969303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 24,
+            "dueDate": 1624647703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 25,
+            "dueDate": 1627239703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 26,
+            "dueDate": 1629918103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 27,
+            "dueDate": 1632596503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 28,
+            "dueDate": 1635184903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 29,
+            "dueDate": 1637863303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 30,
+            "dueDate": 1640455303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 31,
+            "dueDate": 1643133703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 32,
+            "dueDate": 1645815703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 33,
+            "dueDate": 1648234903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 34,
+            "dueDate": 1650913303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 35,
+            "dueDate": 1653505303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 36,
+            "dueDate": 1656183703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 37,
+            "dueDate": 1658775703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 38,
+            "dueDate": 1661454103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 39,
+            "dueDate": 1664132503000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 40,
+            "dueDate": 1666720903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 41,
+            "dueDate": 1669399303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 42,
+            "dueDate": 1671991303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 43,
+            "dueDate": 1674669703000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 44,
+            "dueDate": 1677348103000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 45,
+            "dueDate": 1679770903000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 46,
+            "dueDate": 1682449303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 47,
+            "dueDate": 1685041303000,
+            "amount": 542.17,
+            "factor": null
+          },
+          {
+            "numberInstallment": 48,
+            "dueDate": 1687719703000,
+            "amount": 542.17,
+            "factor": null
+          }
+        ],
+        "installmentsGroup": [
+          {
+            "quantity": 48,
+            "instalmentAmount": 542.17
+          }
+        ],
+        "selected": false,
+        "services": [],
+        "terms": null,
+        "creditReport": "ST:380;",
+        "storeControl": null,
+        "repackage": null,
+        "insuranceQuoteData": null,
+        "carInsuranceSimulationDTO": null,
+        "adp": null,
+        "listPreAnalisys": null,
+        "engineRemunerationId": null,
+        "executionId": null,
+        "couponCode": null,
+        "strategy": null
+      }
+    ],
+    "specialTypes": [],
+    "showNewOnes": true,
+    "dossierNumber": "382113",
+    "dossierStatus": 1,
+    "dossierStatusDescription": "Simulacao em andamento",
+    "calculationSelected": {
+      "id": "BSdWd7pkZ8XiAE53XnXjig",
+      "financialType": {
+        "financeTypeId": "TSuNAmUeALjVgapGicQP3g",
+        "financeTypeIdDescript": null,
+        "description": "CDC"
+      },
+      "financialTable": {
+        "productId": "tGVF93lh9v5RRS_rtFBn-w",
+        "description": "3216 - TABELA NET CDC USADOS - TESTE RCI",
+        "promotional": null,
+        "productInformation": null,
+        "listProductPromotional": null,
+        "delayDefault": null,
+        "delayDefaultExclusive": null,
+        "termDefault": null,
+        "defaultDepositPercent": null,
+        "defaultCommissionId": null,
+        "mainTable": null,
+        "active": null,
+        "validityStart": null,
+        "validityEnd": null,
+        "financeType": null,
+        "type": null,
+        "financialBrands": null,
+        "productType": null
+      },
+      "coeficiente": {
+        "coeffcientId": null,
+        "coefficient": 0.04057,
+        "taxCoefficient": 0.0202,
+        "depositPercent": 0
+      },
+      "entranceValue": 0,
+      "delay": 30,
+      "rates": [
+        {
+          "id": "7XC-8y7DRA9BH5y4JdTlbQ",
+          "value": 400,
+          "province": null,
+          "taxType": "TR"
+        },
+        {
+          "id": "KHS8jueAS4Jy1c4okRFQgA",
+          "value": 100,
+          "province": null,
+          "taxType": "TAB"
+        },
+        {
+          "id": "Jnfs4TtJcGPBNdm38JHZyQ",
+          "value": 550,
+          "province": null,
+          "taxType": "TC"
+        }
+      ],
+      "commission": {
+        "id": "4tceabM1b30zdE6xH8mTtQ",
+        "description": "05",
+        "commissionTemp": null,
+        "temp": null,
+        "selected": null
+      },
+      "term": 36,
+      "totalValue": 15000,
+      "totalAmount": 16050,
+      "instalmentAmount": 694.16,
+      "montlyRate": 2.02,
+      "financedAmount": 16430,
+      "installments": [
+        {
+          "numberInstallment": 1,
+          "dueDate": 1564081303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 2,
+          "dueDate": 1566759703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 3,
+          "dueDate": 1569438103000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 4,
+          "dueDate": 1572026503000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 5,
+          "dueDate": 1574704903000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 6,
+          "dueDate": 1577296903000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 7,
+          "dueDate": 1579975303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 8,
+          "dueDate": 1582657303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 9,
+          "dueDate": 1585162903000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 10,
+          "dueDate": 1587841303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 11,
+          "dueDate": 1590433303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 12,
+          "dueDate": 1593111703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 13,
+          "dueDate": 1595703703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 14,
+          "dueDate": 1598382103000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 15,
+          "dueDate": 1601060503000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 16,
+          "dueDate": 1603648903000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 17,
+          "dueDate": 1606327303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 18,
+          "dueDate": 1608919303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 19,
+          "dueDate": 1611597703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 20,
+          "dueDate": 1614279703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 21,
+          "dueDate": 1616698903000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 22,
+          "dueDate": 1619377303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 23,
+          "dueDate": 1621969303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 24,
+          "dueDate": 1624647703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 25,
+          "dueDate": 1627239703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 26,
+          "dueDate": 1629918103000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 27,
+          "dueDate": 1632596503000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 28,
+          "dueDate": 1635184903000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 29,
+          "dueDate": 1637863303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 30,
+          "dueDate": 1640455303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 31,
+          "dueDate": 1643133703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 32,
+          "dueDate": 1645815703000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 33,
+          "dueDate": 1648234903000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 34,
+          "dueDate": 1650913303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 35,
+          "dueDate": 1653505303000,
+          "amount": 694.16,
+          "factor": null
+        },
+        {
+          "numberInstallment": 36,
+          "dueDate": 1656183703000,
+          "amount": 694.16,
+          "factor": null
+        }
+      ],
+      "installmentsGroup": [
+        {
+          "quantity": 36,
+          "instalmentAmount": 694.16
+        }
+      ],
+      "selected": true,
+      "services": [
+        {
+          "id": "UnuqMiFy1ykUyQA4QG8HKw",
+          "description": "Seguro proteção financeira",
+          "amount": 0,
+          "serviceTypeId": 5,
+          "importCodeOmega": "0",
+          "prices": null,
+          "idParam": null,
+          "params": null
+        },
+        {
+          "id": "7OyOw6t3i0_lVUpRDt7gRg",
+          "description": "Seguro Tranquilidade",
+          "amount": 380,
+          "serviceTypeId": 16,
+          "importCodeOmega": "1",
+          "prices": null,
+          "idParam": null,
+          "params": null
+        }
+      ],
+      "terms": null,
+      "creditReport": "ST:380;",
+      "storeControl": null,
+      "repackage": null,
+      "insuranceQuoteData": null,
+      "carInsuranceSimulationDTO": null,
+      "adp": null,
+      "listPreAnalisys": null,
+      "engineRemunerationId": null,
+      "executionId": null,
+      "couponCode": null,
+      "strategy": null
+    },
+    "certifiedAgent": "3ThH4r-qrmkAcYLUfZtXag",
+    "adp": null,
+    "showDocuments": false,
+    "salesman": {
+      "id": "gn4IZ2PjVUFcxD7f3LLLIw",
+      "name": "Mauro Vargas"
+    },
+    "salesmanStructure": {
+      "salesmanId": "gn4IZ2PjVUFcxD7f3LLLIw",
+      "salesmanName": "Mauro Vargas",
+      "structureId": "7MJB_hmR6AYzX_L7ZJt9Rg",
+      "structureDescription": "RCI Curitiba Renault",
+      "financeBrandImportCode": "000000000002"
+    },
+    "dossierSubmitAllowed": true,
+    "carContracted": null,
+    "calculationsContracted": null,
+    "saleTypeContracted": null,
+    "clientContracted": null,
+    "specialTypesContracted": null,
+    "systemAcronym": null,
+    "vehicleOrigin": "N",
+    "repescClientId": 4260,
+    "showRoomSemiNews": false,
+    "mapfreData": {
+      "commissionCode": 20,
+      "brokerCode": 101279,
+      "susep": 6238,
+      "affinityCode": 9525,
+      "businessCode": 1,
+      "productCode": null,
+      "mapfreVehicle": {
+        "veiculoMarca": {
+          "anoFim": 2010,
+          "anoInicio": 2008,
+          "codigoCategoria": 10,
+          "codigoClasseVeiculo": 36,
+          "codigoFabricante": 11,
+          "codigoMadre": 19,
+          "codigoMarca": "RN512972",
+          "descricao": "CLIO HATCH CAMPUS 1.0 16v(Hi-Flex) A/G 2p",
+          "fipe": "025150-0",
+          "molicar": "04002129-4",
+          "qtdPassageiro": 5,
+          "qtdPorta": 2
+        },
+        "fipe": {
+          "anoModelo": 2010,
+          "codigoFipe": "025150-0",
+          "codigoMarca": "RN512972",
+          "flagZeroKm": 0,
+          "valorFipe": 14092
+        }
+      }
+    }
+  },
+  "msgSantander": null,
+  "msgErrorSantander": null,
+  "step": 2
+}
