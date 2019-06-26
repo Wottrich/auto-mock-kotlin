@@ -68,7 +68,7 @@ object ProcessorHelper {
             for ((key, value) in mapper) {
                 if (value is List<*>) {
                     value as List<Map<String, Any>>
-                    loadListGson(key, map, filer).apply {
+                    loadListGson(key, value, filer).apply {
                         this.let { type ->
                             type.primaryConstructor(constructor.build())
                             createFile(packageName, nameClass, type.build(), filer)
@@ -92,6 +92,8 @@ object ProcessorHelper {
             }
 
         }
+
+
 
         return typeSpec
     }

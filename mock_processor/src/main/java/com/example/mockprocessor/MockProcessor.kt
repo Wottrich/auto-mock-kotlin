@@ -106,6 +106,30 @@ open class MockProcessor : AbstractProcessor() {
                             listClass = this
                         }
 
+                        for ((index, mapper) in map.withIndex()) {
+
+                            val parameters: MutableList<Any> = mutableListOf()
+
+                            for ((key, value) in mapper) {
+                                parameters.add(value)
+
+                                if (lastKey != key && index == 0) {
+                                    lastKey = key
+
+                                    val typeClass = ProcessorHelper.typeClass(value = value)
+                                    ProcessorHelper.createParameter(key, typeClass).apply {
+                                        constructor.addParameter(this)
+                                    }
+                                }
+
+                            }
+
+                            ProcessorHelper.createMultiParameters(parameters).apply {
+                                //listCodeBlock.add(this)
+                            }
+
+                        }
+
                         listClass.let {
                             it.primaryConstructor(constructor.build())
                             it.build().let {
