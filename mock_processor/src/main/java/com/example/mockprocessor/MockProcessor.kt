@@ -47,6 +47,8 @@ open class MockProcessor : AbstractProcessor() {
             val mockWith = element.getAnnotation(MockModel::class.java) as MockModel
             val packageName = elementsUtils.getPackageOf(element).qualifiedName.toString()
 
+            ProcessorHelper
+
             //feature name class
             val mockClassName =
                 if (mockWith.customName.isEmpty()) {
@@ -94,34 +96,14 @@ open class MockProcessor : AbstractProcessor() {
 
                         val name = "${mockClassName}List"
                         val classListType = ClassName(packageName, name)
-                        val listClass = TypeSpec.classBuilder(name)
+                        var listClass = TypeSpec.classBuilder(name)
                         var lastKey = ""
                         val constructor = FunSpec.constructorBuilder()
 
-                        val listCodeBlock: MutableList<CodeBlock> = mutableListOf()
+                        var listCodeBlock: MutableList<CodeBlock>
 
-                        for ((index, mapper) in map.withIndex()) {
-
-                            val parameters: MutableList<Any> = mutableListOf()
-
-                            for ((key, value) in mapper) {
-                                parameters.add(value)
-
-                                if (lastKey != key && index == 0) {
-                                    lastKey = key
-
-                                    val typeClass = ProcessorHelper.typeClass(value = value)
-                                    ProcessorHelper.createParameter(key, typeClass).apply {
-                                        constructor.addParameter(this)
-                                    }
-                                }
-
-                            }
-
-                            ProcessorHelper.createMultiParameters(parameters).apply {
-                                listCodeBlock.add(this)
-                            }
-
+                        ProcessorHelper.loadListGson(name, map, filer).apply {
+                            listClass = this
                         }
 
                         listClass.let {
@@ -133,7 +115,7 @@ open class MockProcessor : AbstractProcessor() {
 
                         ProcessorHelper.createInitializerMultiParametersWithCodeBlock(
                             classListType,
-                            listCodeBlock,
+                            mutableListOf(),
                             true
                         ).apply {
                             ProcessorHelper.createMutableListWithCodeBlock(classListType, this).apply {

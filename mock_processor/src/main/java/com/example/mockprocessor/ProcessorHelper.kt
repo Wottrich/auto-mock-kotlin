@@ -17,6 +17,8 @@ object ProcessorHelper {
     private val arrayList = ClassName("kotlin.collections", "ArrayList")
     private val mutable = ClassName("kotlin.collections", "MutableList")
 
+    private val packageName: String = ""
+
     internal fun typeClass(value: Any? = null, type: TypeName? = null): KClass<*> {
         if (type != null) {
             return when (type) {
@@ -50,6 +52,48 @@ object ProcessorHelper {
             is Boolean -> "%L"
             else -> "%S"
         }
+    }
+
+    internal fun loadListGson (nameClass: String, map: List<Map<String, Any>>, filer: Filer) : TypeSpec.Builder {
+        val typeSpec = TypeSpec.classBuilder(nameClass)
+        var lastKey = ""
+        var lastIndex: Int
+        val constructor = FunSpec.constructorBuilder()
+        val listCodeBlock: MutableList<CodeBlock> = mutableListOf()
+
+        for ((index, mapper) in map.withIndex()) {
+            lastIndex = index
+            val parameters: MutableList<Any> = mutableListOf()
+
+            for ((key, value) in mapper) {
+                if (value is List<*>) {
+                    value as List<Map<String, Any>>
+                    loadListGson(key, map, filer).apply {
+                        this.let { type ->
+                            type.primaryConstructor(constructor.build())
+                            createFile(packageName, nameClass, type.build(), filer)
+                        }
+                        parameters.add(this)
+                    }
+                } else {
+                    if (lastKey != key || lastIndex != index) {
+                        lastKey = key
+
+                        val typeClass = typeClass(value = value)
+                        createParameter(key, typeClass).apply {
+                            constructor.addParameter(this)
+                        }
+                    }
+                }
+            }
+
+            createMultiParameters(parameters).apply {
+                listCodeBlock.add(this)
+            }
+
+        }
+
+        return typeSpec
     }
 
     internal fun createInitializerWithCodeBlock(
